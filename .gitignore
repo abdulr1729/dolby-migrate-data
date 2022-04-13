@@ -1,0 +1,5 @@
+node_modules
+.env
+app.js.zip
+package-lock.json
+testResult.js
