@@ -15,7 +15,7 @@ async function a() {
         isEnhanced: { $ne: true }
       },
     },
-  }).limit(1).toArray()
+  }).limit(5).toArray()
 
   resultPrePRod.map(async mentorPreProd => {
 
@@ -23,11 +23,15 @@ async function a() {
       userId: mentorPreProd.userId
     })
     console.log(mentorProd.userId)
-    let mergedVideoList = mentorProd.videoList.map(obj => mentorPreProd.videoList.find(o => o.id === obj.id) || obj);
+    // console.log(mentorPreProd.videoList)
+
+    let mergedVideoList = mentorProd.videoList.map(obj => mentorPreProd.videoList.find(o => o._id === obj._id) || obj);
     await mergedVideoList.map(async video => {
       video.isEnhanced = true
       return video
     })
+    console.log(mentorProd.videoList.length)
+    console.log(mergedVideoList)
 
     // console.log(mergedVideoList, mergedVideoList.length)
     // mentorProd.videoList = mergedVideoList
