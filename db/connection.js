@@ -13,13 +13,12 @@ const prodConfig = {
     dbHost: process.env.PROD_DB_HOST,
     dbName: process.env.PROD_DB_NAME,
     dbUser: process.env.PROD_DB_USER,
-    dbPassword: process.env.PROD_DB_PASSWORD,
+    dbPassword: "Developer#Access@2022",
     dbPort: process.env.DB_PORT,
 }
-
 let preProdDbUrl = `mongodb://${preProdConfig.dbUser}:${preProdConfig.dbPassword}@${preProdConfig.dbHost}:${preProdConfig.dbPort}/${preProdConfig.dbName}?authSource=expertrons`
 
-let prodDbUrl = `mongodb://${prodConfig.dbUser}:${prodConfig.dbPassword}@${prodConfig.dbHost}:${prodConfig.dbPort}/${prodConfig.dbName}?authSource=expertrons`
+let prodDbUrl = `mongodb://${prodConfig.dbUser}:${encodeURIComponent(prodConfig.dbPassword)}@${prodConfig.dbHost}:${prodConfig.dbPort}/${prodConfig.dbName}?authSource=expertrons`
 
 const preProd = mongoose.createConnection(preProdDbUrl, {
     useNewUrlParser: true,
